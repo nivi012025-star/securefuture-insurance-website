@@ -1,910 +1,815 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="SecureFuture Insurance Pages - Life, Health, General Insurance and more.">
-	<title>SecureFuture Insurance Plans</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-	<style>
-		:root {
-			--navy: #103965;
-			--ink: #173b63;
-			--blue: #1265ad;
-			--sky: #e9f5ff;
-			--muted: #69809a;
-			--line: #dfebf5;
-			--gold: #f6a623;
-			--green: #138b69;
-		}
-		* { box-sizing: border-box; }
-		body { margin: 0; color: var(--ink); font-family: "DM Sans", sans-serif; font-size: 14px; }
-		a { color: inherit; text-decoration: none; }
-		
-		/* Navigation */
-		.site-nav { min-height: 76px; background: rgba(255,255,255,.97); border-bottom: 1px solid #edf2f6; position: sticky; top: 0; z-index: 100; }
-		.brand-mark { width: 46px; height: 46px; flex: 0 0 46px; display: grid; place-items: center; }
-		.brand-mark svg { width: 46px; height: 46px; display: block; }
-		.brand-name { color: var(--navy); font-family: Manrope, sans-serif; font-size: 17px; font-weight: 800; line-height: 1.05; }
-		.brand-caption { color: #7790a7; font-size: 9px; letter-spacing: .4px; }
-		.navbar .nav-link { color: #284a6d; font-size: 12px; font-weight: 600; padding: .65rem .78rem !important; }
-		.navbar .nav-link.active, .navbar .nav-link:hover { color: var(--blue); }
-		.nav-actions { display: flex; align-items: center; gap: 12px; }
-		.phone-link { color: var(--navy); font-size: 12px; font-weight: 700; white-space: nowrap; }
-		.phone-link i { color: #19a779; font-size: 16px; margin-right: 5px; }
-		.btn-primary-custom { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; border-radius: 30px; padding: 12px 19px; color: #fff; background: var(--navy); font-size: 12px; font-weight: 700; transition: transform .2s, background .2s; }
-		.btn-primary-custom:hover { color: #fff; background: #0a2d51; transform: translateY(-2px); }
-		
-		/* Insurance Page Hero - Poster Style */
-		.insurance-hero {
-			position: relative;
-			overflow: hidden;
-			min-height: 420px;
-			display: grid;
-			grid-template-columns: 1.1fr .9fr;
-			align-items: stretch;
-			margin-bottom: 0;
-			background: linear-gradient(135deg, #072d61 0%, #1680bc 100%);
-		}
-		.insurance-hero.lic { background: linear-gradient(135deg, #103965 0%, #1265ad 100%); }
-		.insurance-hero.health { background: linear-gradient(135deg, #138b69 0%, #1abc9c 100%); }
-		.insurance-hero.general { background: linear-gradient(135deg, #1d856f 0%, #27ae60 100%); }
-		.insurance-hero.mutual { background: linear-gradient(135deg, #188a68 0%, #1abc9c 100%); }
-		.insurance-hero.fd { background: linear-gradient(135deg, #d48a18 0%, #e67e22 100%); }
-		.insurance-hero.bonds { background: linear-gradient(135deg, #8b5b2c 0%, #a0522d 100%); }
-		
-		.insurance-hero-copy {
-			position: relative;
-			z-index: 2;
-			padding: 45px 50px;
-			color: #fff;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-		}
-		.insurance-hero-copy .eyebrow {
-			display: block;
-			margin-bottom: 8px;
-			color: #bdebdc;
-			font-size: 11px;
-			font-weight: 800;
-			letter-spacing: 1.2px;
-		}
-		.insurance-hero-copy .company-logo {
-			max-width: 160px;
-			max-height: 60px;
-			object-fit: contain;
-			margin-bottom: 16px;
-			background: rgba(255,255,255,0.15);
-			padding: 8px 12px;
-			border-radius: 8px;
-		}
-		.insurance-hero-copy h1 {
-			margin: 0 0 14px;
-			font: 800 clamp(2rem, 4vw, 2.8rem) / 1.08 Manrope, sans-serif;
-			color: #fff;
-		}
-		.insurance-hero-copy p {
-			max-width: 540px;
-			margin: 0 0 22px;
-			color: rgba(255, 255, 255, 0.87);
-			font-size: 14px;
-			line-height: 1.65;
-		}
-		.insurance-hero-copy .hero-features {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 16px;
-			margin-bottom: 24px;
-		}
-		.insurance-hero-copy .feature-badge {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			font-size: 12px;
-			font-weight: 600;
-			color: #fff;
-			background: rgba(255, 255, 255, 0.15);
-			padding: 8px 14px;
-			border-radius: 20px;
-			border: 1px solid rgba(255, 255, 255, 0.25);
-		}
-		.insurance-hero-copy .feature-badge i {
-			font-size: 14px;
-		}
-		.insurance-hero-copy .hero-cta {
-			display: flex;
-			gap: 12px;
-			flex-wrap: wrap;
-		}
-		.btn-hero-primary {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 8px;
-			background: #fff;
-			color: var(--navy);
-			border: 0;
-			border-radius: 30px;
-			padding: 14px 28px;
-			font-size: 13px;
-			font-weight: 700;
-			cursor: pointer;
-			transition: all 0.3s;
-		}
-		.btn-hero-primary:hover {
-			transform: translateY(-3px);
-			box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-		}
-		.btn-hero-secondary {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 8px;
-			background: transparent;
-			color: #fff;
-			border: 2px solid #fff;
-			border-radius: 30px;
-			padding: 12px 26px;
-			font-size: 13px;
-			font-weight: 700;
-			cursor: pointer;
-			transition: all 0.3s;
-		}
-		.btn-hero-secondary:hover {
-			background: rgba(255, 255, 255, 0.1);
-		}
-		
-		.insurance-hero-image {
-			position: relative;
-			background-position: center;
-			background-size: cover;
-			background-repeat: no-repeat;
-			overflow: hidden;
-		}
-		.insurance-hero-image::after {
-			position: absolute;
-			inset: 0;
-			content: "";
-			background: linear-gradient(90deg, rgba(7, 45, 97, 0.4) 0%, rgba(7, 45, 97, 0.1) 40%, transparent 100%);
-			pointer-events: none;
-		}
-		
-		/* Stats Section */
-		.insurance-stats {
-			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-			gap: 1px;
-			margin-top: -40px;
-			margin-bottom: 40px;
-			position: relative;
-			z-index: 3;
-			border: 1px solid #deebf5;
-			border-radius: 14px;
-			background: #deebf5;
-			overflow: hidden;
-			box-shadow: 0 8px 28px rgba(30, 75, 110, 0.08);
-		}
-		.insurance-stat {
-			min-height: 88px;
-			display: grid;
-			place-items: center;
-			padding: 14px;
-			background: #fff;
-			text-align: center;
-		}
-		.insurance-stat-value {
-			display: block;
-			color: var(--navy);
-			font: 800 22px Manrope, sans-serif;
-			margin-bottom: 4px;
-		}
-		.insurance-stat-label {
-			color: var(--muted);
-			font-size: 11px;
-			font-weight: 600;
-		}
-		
-		/* Content Grid */
-		.insurance-content {
-			display: grid;
-			grid-template-columns: 1.3fr 0.7fr;
-			gap: 24px;
-			margin-top: 0;
-			padding: 40px 0;
-		}
-		
-		/* Insurance Panel */
-		.insurance-panel {
-			padding: 32px;
-			border: 1px solid #e1edf5;
-			border-radius: 16px;
-			background: #fff;
-			box-shadow: 0 8px 24px rgba(30, 75, 110, 0.05);
-		}
-		.insurance-panel h2 {
-			margin: 0 0 14px;
-			color: var(--navy);
-			font: 800 20px Manrope, sans-serif;
-		}
-		.insurance-panel p {
-			color: var(--muted);
-			font-size: 13px;
-			line-height: 1.75;
-			margin: 0 0 16px;
-		}
-		
-		/* Features List */
-		.features-list {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 12px;
-			margin-top: 22px;
-			padding: 0;
-			list-style: none;
-		}
-		.features-list li {
-			display: flex;
-			gap: 10px;
-			color: #345774;
-			font-size: 12px;
-			line-height: 1.5;
-			align-items: flex-start;
-		}
-		.features-list i {
-			color: var(--green);
-			font-size: 16px;
-			flex-shrink: 0;
-			margin-top: 2px;
-		}
-		
-		/* Plans Grid */
-		.plans-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 14px;
-			margin-top: 24px;
-		}
-		.plan-card {
-			padding: 18px;
-			border: 1px solid #e5eef5;
-			border-radius: 12px;
-			background: linear-gradient(145deg, #fff, #f7fbff);
-			text-align: center;
-			transition: all 0.3s;
-			cursor: pointer;
-		}
-		.plan-card:hover {
-			transform: translateY(-4px);
-			box-shadow: 0 8px 20px rgba(18, 101, 173, 0.12);
-			border-color: #b8d9f0;
-		}
-		.plan-card i {
-			color: var(--blue);
-			font-size: 28px;
-			display: block;
-			margin-bottom: 8px;
-		}
-		.plan-card strong {
-			display: block;
-			margin-top: 8px;
-			color: var(--navy);
-			font-size: 13px;
-			font-weight: 800;
-		}
-		.plan-card span {
-			display: block;
-			margin-top: 6px;
-			color: var(--muted);
-			font-size: 11px;
-			line-height: 1.45;
-		}
-		
-		/* Enquiry Form */
-		.enquiry-form-box {
-			position: sticky;
-			top: 96px;
-			border: 1px solid #dce9f2;
-			border-radius: 16px;
-			padding: 28px;
-			background: #fff;
-			box-shadow: 0 12px 32px rgba(16, 57, 101, 0.1);
-		}
-		.enquiry-form-box h3 {
-			margin: 0 0 6px;
-			color: var(--navy);
-			font: 800 20px Manrope, sans-serif;
-		}
-		.enquiry-form-box > p {
-			margin: 0 0 18px;
-			color: var(--muted);
-			font-size: 12px;
-		}
-		.form-group {
-			margin-bottom: 12px;
-		}
-		.form-group label {
-			display: block;
-			margin-bottom: 6px;
-			color: var(--ink);
-			font-size: 12px;
-			font-weight: 700;
-		}
-		.form-group input,
-		.form-group select,
-		.form-group textarea {
-			width: 100%;
-			border: 1px solid #dce8f1;
-			border-radius: 8px;
-			padding: 11px 12px;
-			color: var(--ink);
-			background: #fbfdff;
-			font: 12px "DM Sans", sans-serif;
-			transition: border-color 0.2s;
-		}
-		.form-group input:focus,
-		.form-group select:focus,
-		.form-group textarea:focus {
-			outline: none;
-			border-color: #7ab3dd;
-			box-shadow: 0 0 0 2px rgba(18, 101, 173, 0.1);
-		}
-		.form-group textarea {
-			min-height: 80px;
-			resize: vertical;
-		}
-		.form-actions {
-			display: flex;
-			gap: 10px;
-			margin-top: 18px;
-		}
-		.form-actions button {
-			flex: 1;
-			padding: 12px;
-			border: 0;
-			border-radius: 8px;
-			background: var(--navy);
-			color: #fff;
-			font-size: 12px;
-			font-weight: 700;
-			cursor: pointer;
-			transition: all 0.3s;
-		}
-		.form-actions button:hover {
-			background: #0a2d51;
-			transform: translateY(-2px);
-		}
-		.form-actions .btn-whatsapp {
-			background: #168b65;
-			display: inline-flex;
-			justify-content: center;
-			align-items: center;
-			gap: 6px;
-		}
-		.form-actions .btn-whatsapp:hover {
-			background: #0d6b4f;
-		}
-		.form-status {
-			display: none;
-			margin-top: 14px;
-			padding: 12px;
-			border-radius: 8px;
-			background: #e6f7ef;
-			color: #138b69;
-			font-size: 11px;
-			font-weight: 700;
-			text-align: center;
-		}
-		
-		/* Company Details Panel */
-		.company-details {
-			background: linear-gradient(135deg, #f3fbf8, #fff);
-			padding: 28px;
-			border-radius: 14px;
-			margin-top: 24px;
-		}
-		.company-details h3 {
-			margin: 0 0 12px;
-			color: var(--navy);
-			font: 800 16px Manrope, sans-serif;
-		}
-		.company-details p {
-			margin: 0;
-			color: var(--muted);
-			font-size: 12px;
-			line-height: 1.65;
-		}
-		.company-info-row {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 16px;
-			margin-top: 16px;
-		}
-		.info-item {
-			padding: 12px;
-			background: #fff;
-			border-radius: 8px;
-			border-left: 3px solid var(--blue);
-		}
-		.info-item strong {
-			display: block;
-			color: var(--navy);
-			font-size: 12px;
-			margin-bottom: 4px;
-		}
-		.info-item span {
-			display: block;
-			color: var(--muted);
-			font-size: 11px;
-		}
-		
-		/* Bottom CTA */
-		.insurance-bottom-cta {
-			margin-top: 36px;
-			padding: 24px;
-			border-radius: 14px;
-			background: linear-gradient(105deg, #062d68, #0c55a0);
-			color: #fff;
-			text-align: center;
-		}
-		.insurance-bottom-cta h3 {
-			margin: 0 0 8px;
-			font-size: 16px;
-			font-weight: 800;
-		}
-		.insurance-bottom-cta p {
-			margin: 0;
-			font-size: 12px;
-			opacity: 0.9;
-		}
-		
-		/* Footer */
-		.site-footer {
-			padding: 24px 0 0;
-			color: #dbe8f4;
-			background: #102e4c;
-			margin-top: 60px;
-		}
-		.footer-grid {
-			display: grid;
-			grid-template-columns: 1.5fr 1fr 1fr 1.5fr 1fr;
-			gap: 22px;
-			padding-bottom: 20px;
-		}
-		.footer-brand .brand-name { color: #fff; }
-		.footer-brand .brand-caption { color: #b7cde1; }
-		.footer-title { margin-bottom: 9px; color: #fff; font-size: 11px; font-weight: 800; }
-		.footer-links { display: grid; gap: 5px; }
-		.footer-links a, .footer-contact span { color: #c3d5e5; font-size: 10px; }
-		.footer-contact { display: grid; gap: 6px; }
-		.footer-contact i { width: 15px; margin-right: 4px; color: #dcecff; }
-		.social-links { display: flex; gap: 12px; font-size: 14px; }
-		.footer-bottom { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.13); color: #b7c9da; font-size: 9px; }
-		
-		/* Responsive */
-		@media (max-width: 991.98px) {
-			.insurance-hero { grid-template-columns: 1fr; }
-			.insurance-content { grid-template-columns: 1fr; }
-			.insurance-stats { grid-template-columns: repeat(2, 1fr); }
-			.plans-grid { grid-template-columns: repeat(2, 1fr); }
-			.footer-grid { grid-template-columns: repeat(3, 1fr); }
-		}
-		@media (max-width: 767.98px) {
-			.insurance-hero { min-height: 380px; }
-			.insurance-hero-copy { padding: 35px 24px; }
-			.insurance-hero-image { min-height: 240px; }
-			.insurance-stats { grid-template-columns: repeat(2, 1fr); margin-top: -30px; margin-bottom: 30px; }
-			.insurance-stat { min-height: 80px; }
-			.insurance-panel { padding: 24px; }
-			.enquiry-form-box { position: static; margin-top: 24px; }
-			.plans-grid { grid-template-columns: 1fr; }
-			.features-list { grid-template-columns: 1fr; }
-			.company-info-row { grid-template-columns: 1fr; }
-		}
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SecureFuture insurance and investment plans for life, health, general insurance, mutual funds, fixed deposits and bonds.">
+  <title>SecureFuture | Insurance Plans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #103965;
+      --ink: #173b63;
+      --blue: #1265ad;
+      --sky: #e9f5ff;
+      --muted: #69809a;
+      --line: #dfebf5;
+      --gold: #f6a623;
+      --green: #138b69;
+      --orange: #f4b041;
+      --teal: #149a93;
+      --soft: #f5f9ff;
+      --dark-blue: #0a2244;
+      --white: #ffffff;
+      --shadow: 0 20px 45px rgba(17, 54, 89, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #f4f8fb 100%);
+      font-size: 14px;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container-wide { width: min(1200px, calc(100% - 28px)); margin: 0 auto; }
+
+    .site-nav {
+      min-height: 76px;
+      background: rgba(255,255,255,.98);
+      border-bottom: 1px solid #edf2f6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+    }
+    .brand-mark { width: 42px; height: 42px; flex: 0 0 42px; display: grid; place-items: center; }
+    .brand-mark svg { width: 42px; height: 42px; display: block; }
+    .brand-name {
+      color: var(--navy);
+      font-family: Manrope, sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.05;
+    }
+    .brand-caption { color: #7790a7; font-size: 9px; letter-spacing: .4px; }
+    .navbar .nav-link {
+      color: #284a6d;
+      font-size: 12px;
+      font-weight: 600;
+      padding: .65rem .8rem !important;
+    }
+    .navbar .nav-link.active, .navbar .nav-link:hover { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .phone-link { color: var(--navy); font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .phone-link i { color: #19a779; font-size: 16px; margin-right: 5px; }
+    .btn-primary-custom {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 0; border-radius: 30px; padding: 12px 20px; color: #fff;
+      background: var(--navy); font-size: 12px; font-weight: 700; transition: .2s ease;
+    }
+    .btn-primary-custom:hover { color: #fff; background: #0c2e52; transform: translateY(-2px); }
+    .btn-outline-custom {
+      border: 1px solid #9fb8ce; border-radius: 30px; color: var(--navy); padding: 10px 16px;
+      background: rgba(255,255,255,.72); font-size: 12px; font-weight: 700;
+    }
+    .btn-outline-custom:hover { color: var(--blue); background: #fff; }
+
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 470px;
+      display: grid;
+      grid-template-columns: 1.18fr .82fr;
+      align-items: stretch;
+      margin: 0 auto 30px;
+      border-radius: 0 0 28px 28px;
+      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, #072d61 0%, #1680bc 100%);
+    }
+    .page-hero.life { background: linear-gradient(135deg, #0a2d52 0%, #277ed8 100%); }
+    .page-hero.health { background: linear-gradient(135deg, #0a7c61 0%, #36c6a7 100%); }
+    .page-hero.general { background: linear-gradient(135deg, #0e5f57 0%, #1bb88d 100%); }
+    .page-hero.mutual { background: linear-gradient(135deg, #0b5e48 0%, #1ba38d 100%); }
+    .page-hero.fd { background: linear-gradient(135deg, #d4811d 0%, #f2a126 100%); }
+    .page-hero.bonds { background: linear-gradient(135deg, #8b4a2d 0%, #d18538 100%); }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(7, 31, 57, 0.82) 0%, rgba(7, 31, 57, 0.32) 35%, rgba(7, 31, 57, 0.08) 58%, rgba(7, 31, 57, 0) 100%);
+      pointer-events: none;
+    }
+    .page-hero-inner {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      width: min(1200px, calc(100% - 28px));
+      margin: 0 auto;
+      align-items: center;
+    }
+    .page-hero-copy {
+      padding: 52px 10px 52px 0;
+      color: #fff;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+      color: #eaf5ff;
+    }
+    .page-hero-copy h1 {
+      margin: 0 0 12px;
+      font: 800 clamp(2.1rem, 3vw, 3.3rem) / 1.08 Manrope, sans-serif;
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+    .page-hero-copy p {
+      margin: 0 0 24px;
+      max-width: 550px;
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 26px;
+    }
+    .hero-tag {
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 12px;
+      font-weight: 700;
+      color: #edf7ff;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-hero-light {
+      border-radius: 30px; border: none; padding: 12px 18px; font-size: 12px; font-weight: 800;
+      background: #fff; color: var(--navy);
+    }
+    .btn-hero-dark {
+      border-radius: 30px; border: 1px solid rgba(255,255,255,.28); padding: 12px 18px; font-size: 12px; font-weight: 800;
+      color: #fff; background: rgba(255,255,255,.06);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 0;
+    }
+    .hero-visual-card {
+      position: relative;
+      width: min(100%, 430px);
+      min-height: 360px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 26px 52px rgba(5, 29, 53, 0.26);
+    }
+    .hero-visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.1) contrast(1.04);
+    }
+    .hero-floating-box {
+      position: absolute;
+      right: -10px;
+      bottom: 22px;
+      width: 176px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.88);
+      box-shadow: 0 20px 30px rgba(11, 40, 69, 0.18);
+      padding: 16px 14px;
+      color: var(--navy);
+    }
+    .hero-floating-box .mini-title { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; }
+    .hero-floating-box strong { display: block; margin-top: 8px; font-size: 30px; line-height: 1; font-family: Manrope, sans-serif; }
+    .hero-floating-box span { font-size: 12px; color: var(--muted); }
+
+    .service-shell {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(17, 54, 89, 0.06);
+      padding: 24px 20px;
+      margin-bottom: 30px;
+    }
+    .section-header {
+      display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 20px;
+    }
+    .section-header h2 {
+      margin: 0;
+      font: 800 21px/1.3 Manrope, sans-serif;
+      color: var(--navy);
+    }
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .plan-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .plan-card:hover { transform: translateY(-3px); box-shadow: 0 16px 28px rgba(14, 52, 89, 0.08); }
+    .plan-icon-wrap {
+      display: flex; align-items: center; justify-content: center;
+      height: 68px; font-size: 28px; color: #fff; background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    }
+    .plan-card:nth-child(2) .plan-icon-wrap { background: linear-gradient(135deg, #0f9472, #36c6a7); }
+    .plan-card:nth-child(3) .plan-icon-wrap { background: linear-gradient(135deg, #d48a18, #efb75f); }
+    .plan-card:nth-child(4) .plan-icon-wrap { background: linear-gradient(135deg, #0d6d6e, #1ab4af); }
+    .plan-card:nth-child(5) .plan-icon-wrap { background: linear-gradient(135deg, #e27d2f, #f4b041); }
+    .plan-card:nth-child(6) .plan-icon-wrap { background: linear-gradient(135deg, #a75c2d, #d67c3a); }
+    .plan-body { padding: 18px 18px 16px; }
+    .plan-body h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+      font-family: Manrope, sans-serif;
+    }
+    .plan-body p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 12px;
+    }
+    .plan-features { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 9px; border-radius: 999px; font-size: 11px;
+      font-weight: 700; color: var(--navy); background: #edf5ff;
+    }
+
+    .features-grid {
+      display: grid; grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+    .feature-panel, .quote-panel {
+      background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 10px 30px rgba(17, 54, 89, 0.05);
+      overflow: hidden;
+    }
+    .feature-panel { padding: 24px 22px; }
+    .list-check {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 16px; margin-top: 18px;
+    }
+    .check-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 12px 10px; border: 1px solid #edf2f9; border-radius: 12px; background: #f9fbff; color: var(--ink);
+      font-size: 12px; line-height: 1.5;
+    }
+    .check-item i {
+      width: 28px; height: 28px; display: grid; place-items: center;
+      flex: 0 0 28px; border-radius: 50%; background: #e4f4ff; color: var(--blue);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .quote-panel {
+      padding: 24px 22px 8px;
+      position: relative;
+      background: linear-gradient(180deg, #0b2847 0%, #0d3d66 100%);
+      color: #fff;
+    }
+    .quote-panel h3 { margin: 0; font-family: Manrope, sans-serif; font-weight: 800; font-size: 20px; }
+    .quote-panel .stat-box {
+      display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-top: 18px;
+    }
+    .stat-box .stat {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.10); border-radius: 15px; padding: 14px 12px;
+    }
+    .stat strong { display: block; font-size: 28px; line-height: 1; font-family: Manrope, sans-serif; }
+    .stat span { display: block; margin-top: 6px; font-size: 11px; color: rgba(255,255,255,.78); }
+
+    .companies-shell {
+      background: #fff; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 10px 30px rgba(17, 54, 89, 0.05);
+      padding: 24px 22px 18px;
+      margin-bottom: 30px;
+    }
+    .company-grid {
+      display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-top: 18px;
+    }
+    .company-card {
+      background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+      border: 1px solid #ebf2fa; border-radius: 18px; padding: 18px 14px 16px;
+      text-align: center; min-height: 180px; transition: .2s ease;
+    }
+    .company-card:hover { transform: translateY(-3px); box-shadow: 0 16px 25px rgba(17, 54, 89, 0.06); }
+    .company-logo-box {
+      width: 62px; height: 62px; border-radius: 18px; display: grid; place-items: center;
+      margin: 0 auto 14px; font-size: 26px; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--navy), var(--blue));
+    }
+    .company-card:nth-child(2) .company-logo-box { background: linear-gradient(135deg, #15a06b, #33d7a7); }
+    .company-card:nth-child(3) .company-logo-box { background: linear-gradient(135deg, #ff9d2c, #f7c86d); }
+    .company-card:nth-child(4) .company-logo-box { background: linear-gradient(135deg, #1d7fcf, #4fbbff); }
+    .company-card h4 {
+      margin: 0 0 8px; font-size: 15px; color: var(--navy); font-weight: 800;
+    }
+    .company-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+    .contact-wrap {
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      gap: 22px; margin-bottom: 36px;
+    }
+    .contact-panel {
+      background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 22px 20px; box-shadow: 0 10px 30px rgba(17, 54, 89, 0.05);
+    }
+    .contact-form { display: grid; gap: 14px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .form-field { display: grid; gap: 8px; }
+    .form-field label {
+      font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%; border: 1px solid #dfeaf5; background: #f9fbff; border-radius: 12px; padding: 12px 13px; color: var(--ink);
+      font-size: 13px; outline: none;
+    }
+    .form-field textarea { min-height: 110px; resize: vertical; }
+    .submit-btn { border: 0; border-radius: 12px; padding: 12px 16px; background: linear-gradient(135deg, var(--navy), var(--blue)); color: #fff; font-weight: 800; }
+
+    .info-banner {
+      display: grid; gap: 18px;
+      background: linear-gradient(180deg, #0f2f56 0%, #0b2342 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px; padding: 22px 20px; color: #fff;
+      box-shadow: 0 14px 35px rgba(11, 35, 66, 0.18);
+    }
+    .info-banner .mini-stat {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 10px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    }
+    .mini-stat .icon {
+      width: 46px; height: 46px; display: grid; place-items: center; border-radius: 12px;
+      background: rgba(255,255,255,.12); font-size: 20px;
+    }
+    .mini-stat strong { display: block; font-size: 18px; font-weight: 800; }
+    .mini-stat span { display: block; font-size: 12px; color: rgba(255,255,255,.72); }
+
+    @media (max-width: 980px) {
+      .page-hero, .page-hero-inner, .features-grid, .contact-wrap { grid-template-columns: 1fr; }
+      .plan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .company-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .page-hero-copy { padding: 44px 0 10px; }
+      .hero-visual { padding-top: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .plan-grid, .company-grid, .list-check, .form-grid { grid-template-columns: 1fr; }
+      .page-hero { border-radius: 0 0 22px 22px; }
+      .page-hero-copy h1 { font-size: 2.1rem; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .nav-actions { display: none; }
+      .container-wide { width: min(100% - 20px, 1200px); }
+    }
+  </style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
-		<div class="container-xl">
-			<a class="navbar-brand d-flex align-items-center gap-2" href="finance.html" aria-label="SecureFuture home">
-				<span class="brand-mark"><svg viewBox="0 0 48 48" role="img" aria-label="SecureFuture logo"><path d="M7 38h34" fill="none" stroke="#164f83" stroke-width="2.2" stroke-linecap="round"/><path d="M11 36V27h5v9M20 36V22h5v14M29 36V17h5v19" fill="#1b6aa6"/><path d="M8 24c6-10 15-14 27-13" fill="none" stroke="#168e83" stroke-width="2.5" stroke-linecap="round"/><path d="m31 7 6 4-6 4" fill="none" stroke="#168e83" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 13c1-5 5-8 11-8-1 6-4 10-9 11" fill="#41a96e"/><path d="M26 15c-4-4-9-4-14-1 4 5 9 6 14 4" fill="#239e83"/><path d="M29 17c-4 5-8 8-13 10" fill="none" stroke="#164f83" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-				<span><span class="brand-name d-block">SecureFuture</span><span class="brand-caption">Insurance | Investment | Financial Advisory</span></span>
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-			<div class="collapse navbar-collapse" id="mainNav">
-				<ul class="navbar-nav mx-auto align-items-lg-center">
-					<li class="nav-item"><a class="nav-link" href="finance.html">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="finance.html#why-us">About Us</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Our Services</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="insurance-pages.html?page=life">Life Insurance</a></li><li><a class="dropdown-item" href="insurance-pages.html?page=health">Health Insurance</a></li><li><a class="dropdown-item" href="insurance-pages.html?page=general">General Insurance</a></li><li><a class="dropdown-item" href="insurance-pages.html?page=mutual">Mutual Funds</a></li><li><a class="dropdown-item" href="insurance-pages.html?page=fd">Fixed Deposit</a></li><li><a class="dropdown-item" href="insurance-pages.html?page=bonds">Bonds & NCD</a></li></ul></li>
-					<li class="nav-item"><a class="nav-link" href="finance.html#partners">Partner Companies</a></li>
-					<li class="nav-item"><a class="nav-link" href="finance.html#how-it-works">Resources</a></li>
-				</ul>
-				<div class="nav-actions"><a class="phone-link" href="tel:+919994985396"><i class="bi bi-telephone-fill"></i>99949 85396</a><a class="btn-primary-custom py-2 px-3" href="#enquiry-form">Free Consultation</a></div>
-			</div>
-		</div>
-	</nav>
+  <nav class="site-nav">
+    <div class="container-wide d-flex align-items-center justify-content-between" style="min-height:76px;">
+      <a href="index.html" class="d-flex align-items-center gap-2">
+        <span class="brand-mark" aria-label="SecureFuture logo">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SecureFuture logo">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0d6ab4"/>
+                <stop offset="100%" stop-color="#143d73"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="60" height="60" rx="18" fill="#eaf5ff"/>
+            <path d="M19 41c0-8.8 6.2-15.9 14.6-17.5V18h6.8v5.5c3.7.8 6.8 3.7 8.2 7.4l-5.8 2.1c-1.1-2.5-3.2-4-6.1-4.3v10.5c2.8-.4 5-1.8 6.4-4.1l5.4 2.8c-2.2 5.2-7.2 8.6-13.5 8.9v5.5h-6.8v-5.1C25.4 47.6 19 45 19 41zm18.6-6.5c-4.1 0-7.2 2.1-8.8 5.4 1.5 2.5 4.6 4.1 8.8 4.2 4.3-.1 7.4-1.7 8.8-4.2-1.6-3.3-4.7-5.4-8.8-5.4z" fill="url(#g1)"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-name d-block">Securefuture</span>
+          <span class="brand-caption d-block">Financial Services</span>
+        </span>
+      </a>
+      <div class="navbar d-none d-lg-flex align-items-center gap-1">
+        <a class="nav-link active" href="index.html">Home</a>
+        <a class="nav-link" href="index.html#about">About</a>
+        <a class="nav-link" href="index.html#services">Our Services</a>
+        <a class="nav-link" href="index.html#partners">Partner Companies</a>
+        <a class="nav-link" href="index.html#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a class="phone-link" href="tel:+919876543210"><i class="bi bi-telephone-fill"></i>+91 98765 43210</a>
+        <a href="index.html#contact" class="btn-primary-custom">Book a Free Call</a>
+      </div>
+    </div>
+  </nav>
 
-	<main id="mainContent">
-		<!-- Content will be loaded here via JavaScript -->
-	</main>
+  <section class="page-hero life" id="serviceHero">
+    <div class="page-hero-inner">
+      <div class="page-hero-copy">
+        <span class="eyebrow" id="heroEyebrow">Insurance</span>
+        <h1 id="heroTitle">Life Insurance</h1>
+        <p id="heroText">Protect your family’s future with long-term, tax-efficient life cover, flexible payouts, and easy premium options designed for every life stage.</p>
+        <div class="hero-tags" id="heroTags"></div>
+        <div class="hero-actions">
+          <a class="btn-hero-light btn-primary-custom" href="#contactForm">Get Free Quote</a>
+          <a class="btn-hero-dark" href="#companyList">Explore Companies</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-card">
+          <img id="heroImage" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Family with life insurance support">
+        </div>
+        <div class="hero-floating-box">
+          <div class="mini-title">Trusted since</div>
+          <strong id="heroStat">7+</strong>
+          <span id="heroStatLabel">Years of guidance</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<footer class="site-footer" id="contact">
-		<div class="container-xl">
-			<div class="footer-grid">
-				<div class="footer-brand"><a class="d-flex align-items-center gap-2" href="finance.html"><span class="brand-mark"><svg viewBox="0 0 48 48" role="img" aria-label="SecureFuture logo"><path d="M7 38h34" fill="none" stroke="#164f83" stroke-width="2.2" stroke-linecap="round"/><path d="M11 36V27h5v9M20 36V22h5v14M29 36V17h5v19" fill="#1b6aa6"/><path d="M8 24c6-10 15-14 27-13" fill="none" stroke="#168e83" stroke-width="2.5" stroke-linecap="round"/><path d="m31 7 6 4-6 4" fill="none" stroke="#168e83" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 13c1-5 5-8 11-8-1 6-4 10-9 11" fill="#41a96e"/><path d="M26 15c-4-4-9-4-14-1 4 5 9 6 14 4" fill="#239e83"/><path d="M29 17c-4 5-8 8-13 10" fill="none" stroke="#164f83" stroke-width="1.8" stroke-linecap="round"/></svg></span><span><span class="brand-name d-block">SecureFuture</span><span class="brand-caption">Insurance | Investment | Financial Advisory</span></span></a></div>
-				<div><div class="footer-title">Quick Links</div><div class="footer-links"><a href="finance.html">Home</a><a href="finance.html#why-us">About Us</a><a href="finance.html#services">Our Services</a><a href="finance.html#partners">Partner Companies</a></div></div>
-				<div><div class="footer-title">Our Services</div><div class="footer-links"><a href="insurance-pages.html?page=life">Life Insurance</a><a href="insurance-pages.html?page=health">Health Insurance</a><a href="insurance-pages.html?page=general">General Insurance</a><a href="insurance-pages.html?page=mutual">Mutual Funds</a></div></div>
-				<div class="footer-contact"><div class="footer-title">Insurance & Investment Advisor</div><span><i class="bi bi-telephone"></i><a href="tel:+919994985396">99949 85396</a></span><span><i class="bi bi-telephone"></i><a href="tel:+919443185396">94431 85396</a></span><span><i class="bi bi-geo-alt"></i>Plot 26, Santhosh St, SVD Nagar, Madurai - 18</span></div>
-				<div><div class="footer-title">Follow Us</div><div class="social-links"><a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a><a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a><a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a><a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a></div></div>
-			</div>
-			<div class="footer-bottom"><span>&copy; 2025 SecureFuture Financial Services. All rights reserved.</span></div>
-		</div>
-	</footer>
+  <main class="container-wide">
+    <section class="service-shell">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow" style="background:#edf5ff;color:var(--navy);border-color:#dfeaf9;padding:6px 8px;">Popular Plans</span>
+          <h2 id="planHeading">Life Insurance Plans</h2>
+        </div>
+        <p id="planSubheading">Flexible solutions for family protection, education, retirement, and wealth goals.</p>
+      </div>
+      <div class="plan-grid" id="planGrid"></div>
+    </section>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script>
-		const insuranceData = {
-			life: {
-				name: "Life Insurance",
-				company: "LIC Life Insurance",
-				logo: "assets/logos/lic.png",
-				hero: {
-					title: "Protect Your Family's Future",
-					subtitle: "Life Insurance Plans That Give You Peace of Mind",
-					description: "Comprehensive life insurance solutions designed to protect your loved ones and secure their financial future. Compare plans from trusted insurers and choose what's best for your family.",
-					badges: ["Family Protection", "Best Rates", "24/7 Support", "Quick Claims"],
-					image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=85"
-				},
-				stats: [
-					["₹7.5L+", "Lives Protected"],
-					["1000+", "Active Plans"],
-					["₹50Cr+", "Claims Processed"],
-					["7+ Years", "We've Been Trusted"]
-				],
-				about: "Life insurance creates a financial cushion for your family, ensuring their education, daily expenses, and long-term goals are met even if you're not there. SecureFuture helps you compare term insurance, endowment plans, and retirement solutions from top insurers, understand policy terms clearly, and get comprehensive after-sales support.",
-				features: ["Term Life Coverage", "Child Education Plans", "Retirement Income Planning", "Accidental Death Benefit", "Critical Illness Rider", "Transparent Policy Terms", "Hassle-free Claims Process", "Lifelong Customer Support"],
-				plans: [
-					["Term Insurance", "Maximum protection at minimum cost", "bi-shield-check"],
-					["Endowment Plans", "Save while protecting your family", "bi-wallet2"],
-					["Child Plans", "Build your child's future", "bi-person-heart"],
-					["Pension Plans", "Create retirement income", "bi-calendar-check"]
-				],
-				companyInfo: {
-					established: "1956",
-					experience: "66+ Years",
-					reach: "Pan-India",
-					products: "100+ Plans"
-				},
-				color: "lic"
-			},
-			health: {
-				name: "Health Insurance",
-				company: "Star Health Insurance",
-				logo: "assets/logos/star-health.png",
-				hero: {
-					title: "Comprehensive Health Coverage",
-					subtitle: "Healthcare Solutions for You and Your Family",
-					description: "Get affordable health insurance that covers medical emergencies, hospitalization, and preventive care. Compare family plans, senior citizen options, and critical illness covers from trusted providers.",
-					badges: ["Cashless Treatment", "No Waiting Period", "Family Floater", "24x7 Claim Support"],
-					image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85"
-				},
-				stats: [
-					["50000+", "Empanelled Hospitals"],
-					["99.8%", "Claim Settlement"],
-					["5Lakh+", "Families Covered"],
-					["7+ Years", "Your Health Partner"]
-				],
-				about: "Quality healthcare is a right, not a luxury. We help you choose health insurance that covers hospital stays, surgeries, medical emergencies, and wellness check-ups. Our advisors explain coverage limits, waiting periods, exclusions, and network hospitals so you can make informed decisions and protect your family's health.",
-				features: ["Individual Family Plans", "Senior Citizen Coverage", "Maternity Benefits", "Critical Illness Cover", "Cashless Hospitalization", "Network Hospital Access", "No Room Rent Limit", "Claim Assistance Support"],
-				plans: [
-					["Family Floater", "One plan for your entire family", "bi-people"],
-					["Senior Care", "Special plans for parents and grandparents", "bi-person-heart"],
-					["Critical Illness", "Lump-sum amount for major diagnoses", "bi-heart-pulse"],
-					["Maternity Plan", "Pregnancy and newborn care", "bi-person-arms-up"]
-				],
-				companyInfo: {
-					established: "2006",
-					experience: "Health Specialist",
-					reach: "500+ Cities",
-					products: "30+ Plans"
-				},
-				color: "health"
-			},
-			general: {
-				name: "General Insurance",
-				company: "United India Insurance",
-				logo: "assets/logos/united-india.png",
-				hero: {
-					title: "Protect Your Assets & Lifestyle",
-					subtitle: "Motor, Home, Travel & Personal Protection",
-					description: "Safeguard your car, home, belongings, and travel plans with comprehensive general insurance. Get complete protection with easy claim settlements and 24/7 customer support.",
-					badges: ["Motor & Home", "Fast Claims", "Trusted Brand", "Affordable Premiums"],
-					image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=85"
-				},
-				stats: [
-					["5Lakh+", "Vehicles Insured"],
-					["1Lakh+", "Home Policies"],
-					["98%", "Claim Approval"],
-					["7+ Years", "Insuring Your Assets"]
-				],
-				about: "Your car, home, and personal belongings represent years of hard work. General insurance protects these assets from accidents, theft, damage, and other unforeseen events. We help you compare motor insurance, home insurance, travel covers, and personal accident plans, understanding deductibles and claim processes.",
-				features: ["Comprehensive Motor Cover", "Third-party Liability", "Home Structure & Contents", "Travel Medical Insurance", "Personal Accident Cover", "Quick Claim Approval", "Online Policy Purchase", "24/7 Claims Support"],
-				plans: [
-					["Motor Insurance", "Protect your vehicle comprehensively", "bi-car-front"],
-					["Home Insurance", "Cover structure and belongings", "bi-house-heart"],
-					["Travel Insurance", "Medical & evacuation cover", "bi-airplane"],
-					["Personal Accident", "Financial protection against accidents", "bi-bandaid"]
-				],
-				companyInfo: {
-					established: "1938",
-					experience: "85+ Years Trust",
-					reach: "All-India",
-					products: "25+ Plans"
-				},
-				color: "general"
-			},
-			mutual: {
-				name: "Mutual Funds",
-				company: "Mutual Funds & AMCs",
-				logo: null,
-				hero: {
-					title: "Grow Your Wealth Wisely",
-					subtitle: "Systematic Investment Plans & Mutual Fund Solutions",
-					description: "Invest for your future with professionally managed mutual funds. Start with SIPs, explore equity and debt funds, and build wealth aligned with your financial goals and risk tolerance.",
-					badges: ["Low Investment", "Diversified Funds", "Expert Management", "Goal-Based Planning"],
-					image: "https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=1200&q=85"
-				},
-				stats: [
-					["₹500Cr+", "Funds Managed"],
-					["10000+", "Active Investors"],
-					["15%+", "Avg Annual Returns"],
-					["7+ Years", "Investment Expertise"]
-				],
-				about: "Mutual funds allow you to participate in market growth without managing individual stocks. Systematic Investment Plans (SIPs) help you invest small amounts regularly and build substantial wealth over time. We guide you through equity funds for growth, debt funds for stability, and balanced funds for a mixed approach.",
-				features: ["SIP & Lump Sum Options", "Equity Fund Selection", "Debt Fund Options", "Balanced Funds", "Goal-Based Portfolio", "Risk Assessment", "Portfolio Review Support", "Regular Performance Updates"],
-				plans: [
-					["Equity Funds", "High growth potential for long-term goals", "bi-graph-up-arrow"],
-					["Debt Funds", "Stability and regular income", "bi-bar-chart"],
-					["Balanced Funds", "Mix of growth and safety", "bi-pie-chart"],
-					["Index Funds", "Low-cost market tracking", "bi-diagram-3"]
-				],
-				companyInfo: {
-					established: "Multiple AMCs",
-					experience: "SEBI Regulated",
-					reach: "Pan-India",
-					products: "500+ Funds"
-				},
-				color: "mutual"
-			},
-			fd: {
-				name: "Fixed Deposit",
-				company: "Banks & Financial Institutions",
-				logo: "assets/logos/hdfc-bank.png",
-				hero: {
-					title: "Guaranteed Returns on Your Savings",
-					subtitle: "Safe & Predictable Fixed Deposit Plans",
-					description: "Build a stable savings base with fixed deposits from trusted banks. Enjoy guaranteed returns, flexible tenure options, and special benefits for senior citizens.",
-					badges: ["Guaranteed Returns", "Safe & Secure", "Flexible Tenure", "Tax Benefits"],
-					image: "https://images.unsplash.com/photo-1534951009808-766178b47a4f?auto=format&fit=crop&w=1200&q=85"
-				},
-				stats: [
-					["₹100Cr+", "FDs Invested"],
-					["5000+", "Active Deposits"],
-					["7-9%", "Interest Rates"],
-					["7+ Years", "Trusted Advisor"]
-				],
-				about: "Fixed deposits offer predictability when you value capital safety. Banks offer various tenure options (1-10 years), cumulative and non-cumulative payouts, and higher rates for senior citizens. We help you compare interest rates, understand tax implications, ladder your deposits for better liquidity, and plan maturities aligned with your goals.",
-				features: ["Flexible 1-10 Year Tenure", "Senior Citizen Benefits", "Cumulative & Non-Cumulative", "Monthly/Quarterly Payouts", "Premature Withdrawal Option", "Tax-Saving FD (5 Years)", "Online Account Opening", "Maturity Reminders"],
-				plans: [
-					["Regular FD", "Build steady savings with guaranteed returns", "bi-safe"],
-					["Senior FD", "Higher rates for 60+ age group", "bi-person-wheelchair"],
-					["Monthly Income FD", "Receive interest every month", "bi-cash-stack"],
-					["Tax-Saving FD", "Section 80C benefits & 5-year lock-in", "bi-receipt"]
-				],
-				companyInfo: {
-					established: "Multiple Banks",
-					experience: "RBI Regulated",
-					reach: "All Major Banks",
-					products: "Standard FD Products"
-				},
-				color: "fd"
-			},
-			bonds: {
-				name: "Bonds & NCD",
-				company: "Government & Corporate Bonds",
-				logo: null,
-				hero: {
-					title: "Fixed Income Investment Options",
-					subtitle: "Government & Corporate Bonds for Portfolio Stability",
-					description: "Diversify your portfolio with government securities, corporate bonds, and NCDs. Earn regular income with lower risk and enjoy capital appreciation.",
-					badges: ["Sovereign Security", "Regular Income", "Tax Efficient", "Portfolio Diversification"],
-					image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=85"
-				},
-				stats: [
-					["₹200Cr+", "Bonds Portfolio"],
-					["500+", "Bond Holders"],
-					["6-8%", "Average Yield"],
-					["7+ Years", "Bond Expertise"]
-				],
-				about: "Bonds and NCDs provide fixed income with varying risk levels. Government bonds offer sovereign backing, while corporate bonds and NCDs provide higher yields. We explain issuer ratings, maturity profiles, interest payment schedules, and liquidity options so you can build a stable income layer in your portfolio.",
-				features: ["Government Securities", "PSU Bonds", "Corporate Bonds", "NCDs (Debentures)", "Credit Rating Information", "Maturity Planning", "Interest Payment Schedules", "Liquidity Guidance"],
-				plans: [
-					["Government Bonds", "Safest option with sovereign backing", "bi-bank"],
-					["PSU Bonds", "Well-rated public sector bonds", "bi-building"],
-					["Corporate Bonds", "Higher yield corporate debt", "bi-graph-up"],
-					["NCDs", "Non-convertible debentures for income", "bi-file-earmark"]
-				],
-				companyInfo: {
-					established: "Multiple Issuers",
-					experience: "RBI & SEBI Regulated",
-					reach: "NSE & BSE Listed",
-					products: "100+ Bonds"
-				},
-				color: "bonds"
-			}
-		};
+    <section class="features-grid">
+      <div class="feature-panel">
+        <div class="section-header" style="margin-bottom:0;">
+          <div>
+            <span class="eyebrow" style="background:#edf5ff;color:var(--navy);border-color:#dfeaf9;padding:6px 8px;">Why Choose Us</span>
+            <h2 id="benefitHeading">Why clients trust SecureFuture</h2>
+          </div>
+        </div>
+        <div class="list-check" id="benefitsList"></div>
+      </div>
 
-		function getPageFromURL() {
-			const params = new URLSearchParams(window.location.search);
-			return params.get('page') || 'life';
-		}
+      <aside class="quote-panel">
+        <h3>We help you make informed financial decisions.</h3>
+        <div class="stat-box">
+          <div class="stat">
+            <strong>7+</strong>
+            <span>Years of experience</span>
+          </div>
+          <div class="stat">
+            <strong>5000+</strong>
+            <span>Happy clients</span>
+          </div>
+          <div class="stat">
+            <strong>25+</strong>
+            <span>Trusted partners</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Customer-first support</span>
+          </div>
+        </div>
+      </aside>
+    </section>
 
-		function renderInsurancePage(pageType) {
-			const data = insuranceData[pageType];
-			if (!data) return;
+    <section class="companies-shell" id="companyList">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow" style="background:#edf5ff;color:var(--navy);border-color:#dfeaf9;padding:6px 8px;">Partner Companies</span>
+          <h2 id="companyHeading">Top insurers and finance brands</h2>
+        </div>
+        <p id="companySubheading">Trusted companies that match your goals and protection needs.</p>
+      </div>
+      <div class="company-grid" id="companyGrid"></div>
+    </section>
 
-			const mainContent = document.getElementById('mainContent');
-			
-			const statsHTML = data.stats.map(([value, label]) => 
-				`<div class="insurance-stat">
-					<span class="insurance-stat-value">${value}</span>
-					<span class="insurance-stat-label">${label}</span>
-				</div>`
-			).join('');
+    <section class="contact-wrap" id="contactForm">
+      <div class="contact-panel">
+        <div class="section-header" style="margin-bottom:14px;">
+          <div>
+            <span class="eyebrow" style="background:#edf5ff;color:var(--navy);border-color:#dfeaf9;padding:6px 8px;">Request a callback</span>
+            <h2>Enquiry Form</h2>
+          </div>
+        </div>
+        <form class="contact-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label>Full Name</label>
+              <input type="text" placeholder="Enter your full name">
+            </div>
+            <div class="form-field">
+              <label>Mobile Number</label>
+              <input type="tel" placeholder="Enter your mobile number">
+            </div>
+            <div class="form-field">
+              <label>Email Address</label>
+              <input type="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-field">
+              <label>Service</label>
+              <select>
+                <option>Life Insurance</option>
+                <option>Health Insurance</option>
+                <option>General Insurance</option>
+                <option>Mutual Funds</option>
+                <option>Fixed Deposit</option>
+                <option>Bonds & NCD</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Your Requirement</label>
+            <textarea placeholder="Tell us about your insurance or investment requirement..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Submit Enquiry</button>
+        </form>
+      </div>
 
-			const featuresHTML = data.features.map(feature => 
-				`<li><i class="bi bi-check2-circle"></i><span>${feature}</span></li>`
-			).join('');
+      <div class="info-banner">
+        <div>
+          <span class="eyebrow" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#eef7ff;">SecureFuture Advantage</span>
+          <h2 style="margin:12px 0 6px; font-family:Manrope,sans-serif; font-weight:800; font-size:28px; line-height:1.1;">We are here to help you with the right protection.</h2>
+          <p style="margin:0;color:rgba(255,255,255,.76);font-size:13px;line-height:1.7;">From policy comparison and document guidance to complete support through every step, our team helps you compare and choose with confidence.</p>
+        </div>
+        <div class="mini-stat">
+          <div class="icon"><i class="bi bi-shield-check"></i></div>
+          <div>
+            <strong>High-Trust Guidance</strong>
+            <span>Clear advice and policy support.</span>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <div class="icon"><i class="bi bi-currency-rupee"></i></div>
+          <div>
+            <strong>Smart Financial Planning</strong>
+            <span>Protection and growth in one place.</span>
+          </div>
+        </div>
+        <div class="mini-stat">
+          <div class="icon"><i class="bi bi-headset"></i></div>
+          <div>
+            <strong>Dedicated Support</strong>
+            <span>Friendly assistance from enquiry to claim.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-			const plansHTML = data.plans.map(([name, desc, icon]) => 
-				`<div class="plan-card">
-					<i class="bi ${icon}"></i>
-					<strong>${name}</strong>
-					<span>${desc}</span>
-				</div>`
-			).join('');
+  <script>
+    const serviceData = {
+      life: {
+        title: 'Life Insurance',
+        eyebrow: 'Life Coverage',
+        text: 'Protect your family’s future with long-term, tax-efficient life cover, flexible payouts, and easy premium options designed for every life stage.',
+        tags: ['Term Plans','Savings Plans','Child Plans','Retirement Cover'],
+        image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80',
+        stat: '7+',
+        statLabel: 'Years of guidance',
+        planHeading: 'Life Insurance Plans',
+        planSubheading: 'Flexible solutions for family protection, education, retirement, and wealth goals.',
+        benefitHeading: 'Why choose life insurance with SecureFuture?',
+        benefits: ['Affordable premium options', 'Flexible payout structures', 'Tax-efficient protection', 'Dedicated support from application to claim'],
+        companyHeading: 'Trusted life insurance companies',
+        companySubheading: 'Compare top-rated plans from leading life insurers.',
+        companies: [
+          { name: 'LIC', short: 'Long-term protection and trust', logo: 'L' },
+          { name: 'HDFC Life', short: 'Smart savings with flexible cover', logo: 'H' },
+          { name: 'ICICI Prudential', short: 'Strong wealth and term coverage', logo: 'I' },
+          { name: 'Max Life', short: 'Customer-first long-term planning', logo: 'M' }
+        ],
+        plans: [
+          { title: 'Term Insurance', icon: '🛡️', desc: 'High life cover at a low premium for strong financial protection.', features: ['100% claim support','Low premiums','Tax benefit'] },
+          { title: 'Endowment Plan', icon: '💰', desc: 'Savings with life cover to build wealth and secure your family goals.', features: ['Savings + cover','Goal-based','Long term'] },
+          { title: 'Child Plan', icon: '🎓', desc: 'Create a dedicated education and future fund for your child.', features: ['Education funding','Stable returns','Secured future'] },
+          { title: 'Retirement Plan', icon: '🏡', desc: 'Prepare for a relaxed retirement with dependable long-term income.', features: ['Income security','Retirement corpus','Pension support'] },
+          { title: 'Unit Linked Plan', icon: '📈', desc: 'Balance insurance protection with wealth creation opportunities.', features: ['Market-linked','Wealth growth','Risk cover'] },
+          { title: 'Money Back Plan', icon: '💼', desc: 'Periodic returns while maintaining strong protection for your family.', features: ['Guaranteed returns','Periodic payouts','Flexible terms'] }
+        ]
+      },
+      health: {
+        title: 'Health Insurance',
+        eyebrow: 'Health Protection',
+        text: 'Stay prepared for medical emergencies with hospital coverage, preventive care, and quicker claim support for your family.',
+        tags: ['Family Floater','Critical Illness','Top-up Plans','Cashless Care'],
+        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80',
+        stat: '24x7',
+        statLabel: 'Support assistance',
+        planHeading: 'Health Insurance Plans',
+        planSubheading: 'Choose protection that supports your family through health emergencies and day-to-day care.',
+        benefitHeading: 'Why choose a health plan with SecureFuture?',
+        benefits: ['Cashless hospital support', 'Family floater coverage', 'Coverage for critical illness', 'Fast claim assistance'],
+        companyHeading: 'Leading health insurance partners',
+        companySubheading: 'Plans designed to reduce medical stress and improve access to care.',
+        companies: [
+          { name: 'Star Health', short: 'Strong health-first coverage for families', logo: 'S' },
+          { name: 'Apollo Munich', short: 'Comprehensive support and network care', logo: 'A' },
+          { name: 'Niva Bupa', short: 'Digital-first and faster service', logo: 'N' },
+          { name: 'United India Health', short: 'Budget-friendly family coverage', logo: 'U' }
+        ],
+        plans: [
+          { title: 'Family Floater', icon: '👨‍👩‍👧‍👦', desc: 'One plan for all family members with shared coverage and lower premiums.', features: ['Single premium','Family cover','Hospital cashless'] },
+          { title: 'Senior Citizen', icon: '👴', desc: 'Protected care for ageing parents with essential support and benefits.', features: ['Age-friendly','Pre/post-hospital','Daily support'] },
+          { title: 'Critical Illness', icon: '💊', desc: 'Receive financial support during major medical conditions and long treatments.', features: ['Lump sum payout','Major disease cover','Peace of mind'] },
+          { title: 'Personal Accident', icon: '🚑', desc: 'Stay protected during unexpected accidents with flexible cover options.', features: ['Accident cover','Income support','Quick assistance'] },
+          { title: 'Top Up Plan', icon: '🩺', desc: 'Enhance existing cover at a lower premium for wider protection.', features: ['Higher limits','Add-on flexibility','Affordable cost'] },
+          { title: 'Maternity Cover', icon: '👶', desc: 'Support for pregnancy, newborn care, and medical expenses at the right time.', features: ['Newborn cover','Doctor support','Family health'] }
+        ]
+      },
+      general: {
+        title: 'General Insurance',
+        eyebrow: 'General Protection',
+        text: 'Safeguard your vehicle, property, travel and everyday assets from unexpected risks with customized general insurance solutions.',
+        tags: ['Car Insurance','Travel Insurance','Home Cover','Business Plans'],
+        image: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80',
+        stat: '7+',
+        statLabel: 'Policy coverage types',
+        planHeading: 'General Insurance Plans',
+        planSubheading: 'Coverage for vehicles, travel, property and risks that can impact your finances.',
+        benefitHeading: 'Why more families choose general insurance?',
+        benefits: ['Asset protection', 'Travel and accident help', 'Quick claims handling', 'Custom plan options'],
+        companyHeading: 'General insurance partners',
+        companySubheading: 'Trusted providers with strong networks and claims support.',
+        companies: [
+          { name: 'United India', short: 'Reliable motor and travel cover', logo: 'U' },
+          { name: 'Bajaj Allianz', short: 'Complete protection for assets and travel', logo: 'B' },
+          { name: 'HDFC ERGO', short: 'Smart digital-first general insurance', logo: 'H' },
+          { name: 'Reliance General', short: 'Strong portfolio for personal security', logo: 'R' }
+        ],
+        plans: [
+          { title: 'Car Insurance', icon: '🚗', desc: 'Protect your vehicle from damage, accidents and theft with tailored packages.', features: ['Damage cover','Third party support','Roadside help'] },
+          { title: 'Two-Wheeler', icon: '🏍️', desc: 'Keep your bike protected with affordable, simple and reliable plans.', features: ['Fast claim flow','Personal accident','Repair support'] },
+          { title: 'Home Insurance', icon: '🏠', desc: 'Protect your property and valuables from fire, theft and damage.', features: ['Fire cover','Theft cover','Property protection'] },
+          { title: 'Travel Insurance', icon: '✈️', desc: 'Stay protected on local and international travel with travel assistance.', features: ['Medical cover','Trip delay','Baggage support'] },
+          { title: 'Commercial Cover', icon: '🏢', desc: 'Support your business with property and liability protection.', features: ['Business risk cover','Legal support','Asset safety'] },
+          { title: 'Marine & Cargo', icon: '🚢', desc: 'Coverage for transport and cargo movement across deliveries and logistics.', features: ['Cargo security','Transit cover','Shipment support'] }
+        ]
+      },
+      mutual: {
+        title: 'Mutual Funds',
+        eyebrow: 'Wealth Growth',
+        text: 'Create long-term wealth with diversified mutual funds tailored to your goals, risk profile and investment horizon.',
+        tags: ['Equity Funds','Debt Funds','SIP','Hybrid Plans'],
+        image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80',
+        stat: '9%',
+        statLabel: 'Potential growth outlook',
+        planHeading: 'Mutual Fund Solutions',
+        planSubheading: 'Invest for long-term growth with balanced, diversified and goal-focused options.',
+        benefitHeading: 'Why invest through SecureFuture?',
+        benefits: ['Portfolio diversification', 'Goal-based planning', 'Disciplined SIP guidance', 'Risk-aware investment advice'],
+        companyHeading: 'Leading mutual fund partners',
+        companySubheading: 'Partner with AMCs and fund houses that match your long-term goals.',
+        companies: [
+          { name: 'SBI Mutual Fund', short: 'Strong legacy and diversified portfolios', logo: 'S' },
+          { name: 'HDFC Mutual Fund', short: 'Popular long-term and tax-saving options', logo: 'H' },
+          { name: 'ICICI Prudential', short: 'Flexible solutions for steady growth', logo: 'I' },
+          { name: 'Axis Mutual Fund', short: 'Performance-driven investment choices', logo: 'A' }
+        ],
+        plans: [
+          { title: 'Equity Fund', icon: '📊', desc: 'Aim for long-term capital growth with diversified stock exposure.', features: ['High growth','Long-term horizon','Market-linked'] },
+          { title: 'Debt Fund', icon: '🏦', desc: 'Lower volatility options for consistent income and capital preservation.', features: ['Stability','Regular income','Low risk'] },
+          { title: 'Hybrid Fund', icon: '⚖️', desc: 'Balance risk and return with a smart mix of equity and debt.', features: ['Balanced portfolio','Moderate risk','Diversified'] },
+          { title: 'Index Fund', icon: '📉', desc: 'Track major market movements with a cost-efficient, broad-based approach.', features: ['Low cost','Index tracking','Market exposure'] },
+          { title: 'Tax Saver Fund', icon: '✅', desc: 'Save on taxes while investing in long-term wealth creation.', features: ['ELSS options','Tax benefits','Growth potential'] },
+          { title: 'SIP Plan', icon: '💸', desc: 'Build discipline through regular, small contributions over time.', features: ['Rupee cost averaging','Affordable','Compounding'] }
+        ]
+      },
+      fd: {
+        title: 'Fixed Deposit',
+        eyebrow: 'Stable Returns',
+        text: 'Secure and predictable investments for your short and long-term goals with reliable fixed deposit options and assured growth.',
+        tags: ['Safe Returns','Short-term','Long-term','Senior FD'],
+        image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80',
+        stat: '8.5%',
+        statLabel: 'Assured annual return',
+        planHeading: 'Fixed Deposit Options',
+        planSubheading: 'Stable, guaranteed returns for your family’s budgeting and future goals.',
+        benefitHeading: 'Why fixed deposits remain a smart choice?',
+        benefits: ['Guaranteed returns', 'Flexible tenure', 'Low risk capital', 'Reliable planning support'],
+        companyHeading: 'FD partner institutions',
+        companySubheading: 'Bank and NBFC options offering stable and secure deposit returns.',
+        companies: [
+          { name: 'HDFC Bank', short: 'Reliable savings and deposit products', logo: 'H' },
+          { name: 'ICICI Bank', short: 'Strong fixed deposit and income plans', logo: 'I' },
+          { name: 'Sundaram', short: 'Trusted financial institution for secured investments', logo: 'S' },
+          { name: 'Bajaj Finance', short: 'Flexible FD options with competitive rates', logo: 'B' }
+        ],
+        plans: [
+          { title: 'Regular FD', icon: '💵', desc: 'A dependable investment for capital protection and steady growth.', features: ['Guaranteed interest','Safe tenure','Easy investing'] },
+          { title: 'Tax Saving FD', icon: '📑', desc: 'Save taxes while earning stable returns over your chosen deposit period.', features: ['Tax savings','Assured return','Low risk'] },
+          { title: 'Senior Citizen FD', icon: '👵', desc: 'Preferential rates and secure capital for senior family members.', features: ['Higher return','Low risk','Long-term confidence'] },
+          { title: 'Short Term FD', icon: '⏳', desc: 'Ideal for short investment windows with strong liquidity and safety.', features: ['Quick maturity','Lower lock-in','Stable returns'] },
+          { title: 'Corporate FD', icon: '🏢', desc: 'Corporate-backed deposit options with stable earnings potential.', features: ['Institutional backing','Strong security','Predictable income'] },
+          { title: 'Monthly Payout FD', icon: '💸', desc: 'Choose periodic income for your household budget and regular needs.', features: ['Regular payout','Budget support','Simple planning'] }
+        ]
+      },
+      bonds: {
+        title: 'Bonds & NCD',
+        eyebrow: 'Fixed Income',
+        text: 'Generate reliable interest income with bonds and NCDs that offer better returns, issue stability and structured investment choices.',
+        tags: ['Corporate Bonds','NCDs','Government Bonds','Income Plans'],
+        image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1200&q=80',
+        stat: '9.5%',
+        statLabel: 'Potential annual yield',
+        planHeading: 'Bonds & NCD Plans',
+        planSubheading: 'Choose secure fixed-income opportunities for steady cash flow and longer-term wealth management.',
+        benefitHeading: 'Why bonds and NCDs are a strong choice?',
+        benefits: ['Predictable returns', 'Capital stability', 'Flexible tenure', 'Income-focused investment'],
+        companyHeading: 'Bond and NCD issuers',
+        companySubheading: 'Explore investment-grade issuance and careful income planning opportunities.',
+        companies: [
+          { name: 'NCD Bonds', short: 'Fixed-income option with structured returns', logo: 'N' },
+          { name: 'Corporate Bonds', short: 'Potentially higher returns with company-backed instruments', logo: 'C' },
+          { name: 'Government Bonds', short: 'Lower risk options for safer long-term growth', logo: 'G' },
+          { name: 'AIF & Fixed Income', short: 'Diversified strategies with disciplined returns', logo: 'A' }
+        ],
+        plans: [
+          { title: 'Corporate NCD', icon: '📘', desc: 'Invest in company-backed instruments with attractive coupon payouts.', features: ['Predictable coupon','Medium-term','Good income'] },
+          { title: 'Government Bond', icon: '📄', desc: 'Lower risk fixed-income instruments for conservative investors.', features: ['Stable returns','Lower volatility','Capital safety'] },
+          { title: 'Secured Bonds', icon: '🔒', desc: 'Asset-backed investment opportunities built for regular income goals.', features: ['Security','Steady payout','Long horizon'] },
+          { title: 'Short-term NCD', icon: '🧾', desc: 'Quick return options with balanced risk and earnings potential.', features: ['Short tenure','Liquidity','Income stream'] },
+          { title: 'Infrastructure Bond', icon: '🏗️', desc: 'Support long-term growth with infrastructure-linked fixed income options.', features: ['Capital growth','Stable returns','Long term'] },
+          { title: 'Income Bond', icon: '💹', desc: 'Generate recurring interest income in a stable investment format.', features: ['Regular income','Diversified risk','Flexible terms'] }
+        ]
+      }
+    };
 
-			const logoHTML = data.logo ? `<img src="${data.logo}" alt="${data.company}" class="company-logo">` : '';
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceKey = urlParams.get('service') || urlParams.get('type') || 'life';
+    const data = serviceData[serviceKey] || serviceData.life;
 
-			mainContent.innerHTML = `
-				<div class="container-xl">
-					<div class="insurance-hero ${data.color}">
-						<div class="insurance-hero-copy">
-							<span class="eyebrow">✓ VERIFIED & TRUSTED</span>
-							${logoHTML}
-							<h1>${data.hero.title}</h1>
-							<p>${data.hero.description}</p>
-							<div class="hero-features">
-								${data.hero.badges.map(badge => `<span class="feature-badge"><i class="bi bi-check-circle"></i> ${badge}</span>`).join('')}
-							</div>
-							<div class="hero-cta">
-								<button class="btn-hero-primary" onclick="document.getElementById('enquiry-form').scrollIntoView({behavior:'smooth'})">Get Quote <i class="bi bi-arrow-right"></i></button>
-								<button class="btn-hero-secondary" onclick="window.location.href='https://wa.me/919994985396'"><i class="bi bi-whatsapp"></i> WhatsApp Inquiry</button>
-							</div>
-						</div>
-						<div class="insurance-hero-image" style="background-image: url('${data.hero.image}')"></div>
-					</div>
+    document.getElementById('serviceHero').classList.add(serviceKey);
+    document.getElementById('heroEyebrow').textContent = data.eyebrow;
+    document.getElementById('heroTitle').textContent = data.title;
+    document.getElementById('heroText').textContent = data.text;
+    document.getElementById('heroImage').src = data.image;
+    document.getElementById('heroStat').textContent = data.stat;
+    document.getElementById('heroStatLabel').textContent = data.statLabel;
+    document.getElementById('planHeading').textContent = data.planHeading;
+    document.getElementById('planSubheading').textContent = data.planSubheading;
+    document.getElementById('benefitHeading').textContent = data.benefitHeading;
+    document.getElementById('companyHeading').textContent = data.companyHeading;
+    document.getElementById('companySubheading').textContent = data.companySubheading;
 
-					<div class="insurance-stats">
-						${statsHTML}
-					</div>
+    const tags = document.getElementById('heroTags');
+    tags.innerHTML = data.tags.map(tag => `<span class="hero-tag">${tag}</span>`).join('');
 
-					<div class="insurance-content">
-						<div>
-							<div class="insurance-panel">
-								<h2>About ${data.name}</h2>
-								<p>${data.about}</p>
-								<ul class="features-list">
-									${featuresHTML}
-								</ul>
-							</div>
+    const planGrid = document.getElementById('planGrid');
+    planGrid.innerHTML = data.plans.map(plan => `
+      <article class="plan-card">
+        <div class="plan-icon-wrap">${plan.icon}</div>
+        <div class="plan-body">
+          <h3>${plan.title}</h3>
+          <p>${plan.desc}</p>
+          <div class="plan-features">
+            ${plan.features.map(feature => `<span class="chip">${feature}</span>`).join('')}
+          </div>
+        </div>
+      </article>
+    `).join('');
 
-							<div class="insurance-panel">
-								<h2>Popular ${data.plans.length > 0 ? 'Options' : 'Products'}</h2>
-								<div class="plans-grid">
-									${plansHTML}
-								</div>
-							</div>
+    const benefitsList = document.getElementById('benefitsList');
+    benefitsList.innerHTML = data.benefits.map(item => `
+      <div class="check-item"><i class="bi bi-check-lg"></i><span>${item}</span></div>
+    `).join('');
 
-							<div class="insurance-bottom-cta">
-								<h3>Ready to get started?</h3>
-								<p>Get expert guidance & personalized quotes from our advisors</p>
-							</div>
-						</div>
-
-						<div>
-							<form id="enquiry-form" class="enquiry-form-box">
-								<h3>Enquire Now</h3>
-								<p>Tell us your requirements. Our advisors will help with best options.</p>
-								
-								<div class="form-group">
-									<label for="name">Full Name *</label>
-									<input type="text" id="name" name="name" required placeholder="Enter your name">
-								</div>
-								
-								<div class="form-group">
-									<label for="phone">Mobile Number *</label>
-									<input type="tel" id="phone" name="phone" required placeholder="10-digit mobile number">
-								</div>
-								
-								<div class="form-group">
-									<label for="email">Email Address</label>
-									<input type="email" id="email" name="email" placeholder="your@email.com">
-								</div>
-								
-								<div class="form-group">
-									<label for="interest">Plan Interest *</label>
-									<select id="interest" name="interest" required>
-										<option value="">${data.name}</option>
-										${data.plans.map(([name]) => `<option>${name}</option>`).join('')}
-										<option>Need help choosing</option>
-									</select>
-								</div>
-								
-								<div class="form-group">
-									<label for="message">Message</label>
-									<textarea id="message" name="message" placeholder="Tell us your goal or any specific questions"></textarea>
-								</div>
-								
-								<div class="form-actions">
-									<button type="submit">Send Enquiry <i class="bi bi-send"></i></button>
-								</div>
-								<div class="form-status">Thank you! Our advisor will contact you shortly.</div>
-							</form>
-
-							<div class="company-details">
-								<h3>Company Details</h3>
-								<p>Partner with India's trusted insurance & financial service providers</p>
-								<div class="company-info-row">
-									<div class="info-item">
-										<strong>Since ${data.companyInfo.established}</strong>
-										<span>${data.companyInfo.experience}</span>
-									</div>
-									<div class="info-item">
-										<strong>Pan ${data.companyInfo.reach}</strong>
-										<span>${data.companyInfo.products}</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			`;
-
-			// Form submission
-			const form = document.getElementById('enquiry-form');
-			form.addEventListener('submit', function(e) {
-				e.preventDefault();
-				const status = this.querySelector('.form-status');
-				status.style.display = 'block';
-				setTimeout(() => {
-					form.reset();
-					status.style.display = 'none';
-				}, 3000);
-			});
-		}
-
-		// Load page on document ready
-		renderInsurancePage(getPageFromURL());
-
-		// Update page when URL changes
-		window.addEventListener('popstate', () => {
-			renderInsurancePage(getPageFromURL());
-		});
-	</script>
+    const companyGrid = document.getElementById('companyGrid');
+    companyGrid.innerHTML = data.companies.map(company => `
+      <article class="company-card">
+        <div class="company-logo-box">${company.logo}</div>
+        <h4>${company.name}</h4>
+        <p>${company.short}</p>
+      </article>
+    `).join('');
+  </script>
 </body>
 </html>
